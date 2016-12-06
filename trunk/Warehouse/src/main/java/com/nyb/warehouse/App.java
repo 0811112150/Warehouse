@@ -1,4 +1,4 @@
-package com.nyb;
+package com.nyb.warehouse;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

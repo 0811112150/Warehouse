@@ -42,10 +42,10 @@
     <!--</dependency>-->
 
     <!--thymeleaf模板jar，是很不错的html数据传递取值，类似jsp的jstl-->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-thymeleaf</artifactId>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.springframework.boot</groupId>-->
+      <!--<artifactId>spring-boot-starter-thymeleaf</artifactId>-->
+    <!--</dependency>-->
 
     <dependency>
       <groupId>junit</groupId>
@@ -57,6 +57,8 @@
 
   <build>
     <plugins>
+      <!--spring boot应用的maven打包过程 先通过maven-shade-plugin生成一个包含依赖的jar，
+      再通过spring-boot-maven-plugin插件把spring boot loader相关的类，还有MANIFEST.MF打包到jar里。-->
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
@@ -76,6 +78,6 @@
     <!--</plugins>-->
     <!--</pluginManagement>-->
 
-    <finalName>StudyJavaSpringBoot</finalName>
+    <finalName>Warehouse</finalName>
   </build>
 </project>
