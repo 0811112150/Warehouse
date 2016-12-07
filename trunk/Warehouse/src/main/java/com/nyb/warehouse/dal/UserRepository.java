@@ -8,6 +8,6 @@ import org.springframework.data.repository.Repository;
 /**
  * Created by aa on 2016/12/7.
  */
-public interface IUserRepository extends JpaRepository<UserEntity, String> {
+public interface UserRepository extends JpaRepository<UserEntity, String> {
 
 }
