@@ -13,7 +13,7 @@ public class WebUser {
     private String address;
     private String mobile;
     private String telephone;
-    private String roleId;
+    private int roleType;
     private Timestamp createDateTime;
     private Timestamp lastLoginTime;
 
@@ -73,12 +73,12 @@ public class WebUser {
         this.telephone = telephone;
     }
 
-    public String getRoleId() {
-        return roleId;
+    public int getRoleType() {
+        return roleType;
     }
 
-    public void setRoleId(String roleId) {
-        this.roleId = roleId;
+    public void setRoleType(int roleId) {
+        this.roleType = roleId;
     }
 
 

@@ -6,6 +6,7 @@ import com.nyb.warehouse.viewmodel.WebUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,23 +20,35 @@ public class UserServiceImpl implements com.nyb.warehouse.service.UserService {
     private UserRepository userRepository;
 
     @Override
-    public boolean insertUser(WebUser webUser) {
-        User userEntity=new User();
-        userEntity.setUserId(UUID.randomUUID().toString());
-        userEntity.setName(webUser.getName());
-//        userEntity.setCreateDateTime(new DateTime());
+    public boolean createUser(WebUser webUser) {
+        Timestamp currentTime = new Timestamp(System.currentTimeMillis());
 
-        userRepository.save(userEntity);
+        User user = new User();
+        user.setUserId(UUID.randomUUID().toString());
+        user.setEmail(webUser.getEmail());
+        user.setAddress(webUser.getAddress());
+        user.setCreateDateTime(currentTime);
+        user.setIsValid(true);
+        user.setLastLoginTime(currentTime);
+        user.setLoginName(webUser.getLoginName());
+        user.setMobile(webUser.getMobile());
+        user.setTelephone(webUser.getTelephone());
+        user.setRoleType(webUser.getRoleType());
+        user.setName(webUser.getName());
+
+        userRepository.save(user);
         return false;
     }
 
     @Override
-    public WebUser getWebUser(String userID) {
+    public WebUser getWebUserByID(String userID) {
+
         return null;
     }
 
     @Override
     public List<WebUser> getWebUserList() {
+
         return null;
     }
 }
