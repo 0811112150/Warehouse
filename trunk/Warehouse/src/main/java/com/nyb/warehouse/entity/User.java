@@ -8,11 +8,11 @@ import java.sql.Timestamp;
  */
 @Entity
 @Table(name = "user", schema = "warehouse", catalog = "")
-public class UserEntity {
+public class User {
     private String address;
     private Timestamp createDateTime;
     private String email;
-    private boolean isValid;
+    private Boolean isValid;
     private Timestamp lastLoginTime;
     private String loginName;
     private String mobile;
@@ -53,11 +53,11 @@ public class UserEntity {
 
     @Basic
     @Column(name = "is_valid")
-    public boolean getIsValid() {
+    public Boolean getIsValid() {
         return isValid;
     }
 
-    public void setIsValid(boolean isValid) {
+    public void setIsValid(Boolean isValid) {
         this.isValid = isValid;
     }
 
@@ -136,7 +136,7 @@ public class UserEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        UserEntity that = (UserEntity) o;
+        User that = (User) o;
 
         if (roleType != that.roleType) return false;
         if (address != null ? !address.equals(that.address) : that.address != null) return false;
