@@ -12,7 +12,7 @@ public class UserEntity {
     private String address;
     private Timestamp createDateTime;
     private String email;
-    private Byte isValid;
+    private boolean isValid;
     private Timestamp lastLoginTime;
     private String loginName;
     private String mobile;
@@ -53,11 +53,11 @@ public class UserEntity {
 
     @Basic
     @Column(name = "is_valid")
-    public Byte getIsValid() {
+    public boolean getIsValid() {
         return isValid;
     }
 
-    public void setIsValid(Byte isValid) {
+    public void setIsValid(boolean isValid) {
         this.isValid = isValid;
     }
 
