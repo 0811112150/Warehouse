@@ -21,7 +21,7 @@ public class UserServiceImpl implements com.nyb.warehouse.service.UserService {
     @Override
     public boolean insertUser(WebUser webUser) {
         UserEntity userEntity=new UserEntity();
-        userEntity.setId(UUID.randomUUID().toString());
+        userEntity.setUserId(UUID.randomUUID().toString());
         userEntity.setName(webUser.getName());
 //        userEntity.setCreateDateTime(new DateTime());
 
