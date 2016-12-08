@@ -8,9 +8,9 @@ import java.util.List;
  * Created by aa on 2016/12/7.
  */
 public interface UserService {
-    boolean insertUser(WebUser webUser);
+    boolean createUser(WebUser webUser);
 
-    WebUser getWebUser(String userID);
+    WebUser getWebUserByID(String userID);
 
     List<WebUser> getWebUserList();
 }

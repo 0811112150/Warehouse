@@ -1,6 +1,6 @@
 package com.nyb.warehouse.controller;
 
-import com.nyb.warehouse.dal.UserRepository;
+import com.nyb.warehouse.service.UserService;
 import com.nyb.warehouse.viewmodel.WebUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,25 +9,25 @@ import org.springframework.web.bind.annotation.*;
  * Created by Administrator on 2016/12/7 0007.
  */
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/User")
 public class UserController {
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
-    public boolean AddUser(@RequestBody WebUser webUser) {
+    @RequestMapping(value = "/CreateUser", method = RequestMethod.POST)
+    public boolean CreateUser(@RequestBody WebUser webUser) {
 
         return true;
     }
 
-    @RequestMapping(value = "/{userid}", method = RequestMethod.GET)
-    public WebUser GetUserByID(@PathVariable("userid") String userID) {
+    @RequestMapping(value = "/GetUserByID/{UserId}", method = RequestMethod.GET)
+    public WebUser GetUserByID(@PathVariable("UserId") String userID) {
         WebUser webUser = new WebUser();
         webUser.setAddress("home");
         return webUser;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/GetUsers", method = RequestMethod.GET)
     public WebUser GetUsers() {
         WebUser webUser = new WebUser();
         webUser.setAddress("home");

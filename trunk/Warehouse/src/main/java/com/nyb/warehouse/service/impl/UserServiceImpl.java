@@ -1,11 +1,12 @@
 package com.nyb.warehouse.service.impl;
 
 import com.nyb.warehouse.dal.UserRepository;
-import com.nyb.warehouse.entity.UserEntity;
+import com.nyb.warehouse.entity.User;
 import com.nyb.warehouse.viewmodel.WebUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,18 +20,23 @@ public class UserServiceImpl implements com.nyb.warehouse.service.UserService {
     private UserRepository userRepository;
 
     @Override
-    public boolean insertUser(WebUser webUser) {
-        UserEntity userEntity=new UserEntity();
-        userEntity.setUserId(UUID.randomUUID().toString());
-        userEntity.setName(webUser.getName());
-//        userEntity.setCreateDateTime(new DateTime());
+    public boolean createUser(WebUser webUser) {
+        Timestamp currentTime = new Timestamp(System.currentTimeMillis());
 
-        userRepository.save(userEntity);
+        User user = new User();
+        user.setUserId(UUID.randomUUID().toString());
+        user.setName(webUser.getName());
+        user.setCreateDateTime(currentTime);
+        user.setAddress(webUser.getAddress());
+        user.setEmail(webUser.getEmail());
+        user.setIsValid(new Byte("1"));
+
+        userRepository.save(user);
         return false;
     }
 
     @Override
-    public WebUser getWebUser(String userID) {
+    public WebUser getWebUserByID(String userID) {
         return null;
     }
 
