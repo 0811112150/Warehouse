@@ -2,6 +2,7 @@ package com.nyb.warehouse.service.impl;
 
 import com.nyb.warehouse.dal.UserRepository;
 import com.nyb.warehouse.entity.User;
+import com.nyb.warehouse.modelmapper.UserMapper;
 import com.nyb.warehouse.viewmodel.WebUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,37 +19,35 @@ public class UserServiceImpl implements com.nyb.warehouse.service.UserService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
     public boolean createUser(WebUser webUser) {
         Timestamp currentTime = new Timestamp(System.currentTimeMillis());
 
-        User user = new User();
-        user.setUserId(UUID.randomUUID().toString());
-        user.setEmail(webUser.getEmail());
-        user.setAddress(webUser.getAddress());
-        user.setCreateDateTime(currentTime);
-        user.setIsValid(true);
-        user.setLastLoginTime(currentTime);
-        user.setLoginName(webUser.getLoginName());
-        user.setMobile(webUser.getMobile());
-        user.setTelephone(webUser.getTelephone());
-        user.setRoleType(webUser.getRoleType());
-        user.setName(webUser.getName());
+        User user = userMapper.viewModelToEntity(webUser);
 
-        userRepository.save(user);
-        return false;
+        user.setUserId(UUID.randomUUID().toString());
+        user.setCreateDateTime(currentTime);
+        user.setLastLoginTime(currentTime);
+
+        User result = userRepository.save(user);
+
+        return true;
     }
 
     @Override
     public WebUser getWebUserByID(String userID) {
-
-        return null;
+        User user = userRepository.findOne(userID);
+        WebUser webUser = userMapper.entityToViewModel(user);
+        return webUser;
     }
 
     @Override
     public List<WebUser> getWebUserList() {
 
         return null;
+
     }
 }

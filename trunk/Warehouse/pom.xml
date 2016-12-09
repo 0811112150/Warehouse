@@ -1,94 +1,141 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.nyb</groupId>
-  <artifactId>Warehouse</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <packaging>jar</packaging>
+    <groupId>com.nyb</groupId>
+    <artifactId>Warehouse</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-  <name>Warehouse</name>
-  <url>http://maven.apache.org</url>
+    <name>Warehouse</name>
+    <url>http://maven.apache.org</url>
 
-  <!-- 继承父包 -->
+    <!-- 继承父包 -->
 
-  <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>1.4.1.RELEASE</version>
-    <relativePath></relativePath>
-  </parent>
-
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-
-  <dependencies>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-
-    <!--jpa的jar包 ，操作数据库的，类似hibernate-->
-    <!--It provides the following key dependencies:-->
-    <!--Hibernate — One of the most popular JPA implementations.-->
-    <!--Spring Data JPA — Makes it easy to implement JPA-based repositories.-->
-    <!--Spring ORMs — Core ORM support from the Spring Framework.-->
-    <dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-data-jpa</artifactId>
-    </dependency>
-
-<!--  <Applications that use spring-boot-devtools will automatically restart whenever files on the classpath change-->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-devtools</artifactId>
-      <optional>true</optional>
-    </dependency>
-
-    <!--mysql驱动-->
-    <dependency>
-    <groupId>mysql</groupId>
-    <artifactId>mysql-connector-java</artifactId>
-    </dependency>
-
-    <!--thymeleaf模板jar，是很不错的html数据传递取值，类似jsp的jstl-->
-    <!--<dependency>-->
-      <!--<groupId>org.springframework.boot</groupId>-->
-      <!--<artifactId>spring-boot-starter-thymeleaf</artifactId>-->
-    <!--</dependency>-->
-
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
-
-  <build>
-    <plugins>
-      <!--spring boot应用的maven打包过程 先通过maven-shade-plugin生成一个包含依赖的jar，
-      再通过spring-boot-maven-plugin插件把spring boot loader相关的类，还有MANIFEST.MF打包到jar里。-->
-      <plugin>
+    <parent>
         <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin>
-    </plugins>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.4.1.RELEASE</version>
+        <relativePath></relativePath>
+    </parent>
 
-    <!-- 配置java版本 不配置的话默认父类配置的是1.6-->
-    <!--<pluginManagement>-->
-    <!--<plugins>-->
-    <!--<plugin>-->
-    <!--<artifactId>maven-compiler-plugin</artifactId>-->
-    <!--<configuration>-->
-    <!--<source>1.8</source>-->
-    <!--<target>1.8</target>-->
-    <!--</configuration>-->
-    <!--</plugin>-->
-    <!--</plugins>-->
-    <!--</pluginManagement>-->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <org.mapstruct.version>1.0.0.Final</org.mapstruct.version>
+    </properties>
 
-    <finalName>Warehouse</finalName>
-  </build>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!--jpa的jar包 ，操作数据库的，类似hibernate-->
+        <!--It provides the following key dependencies:-->
+        <!--Hibernate — One of the most popular JPA implementations.-->
+        <!--Spring Data JPA — Makes it easy to implement JPA-based repositories.-->
+        <!--Spring ORMs — Core ORM support from the Spring Framework.-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!--  <Applications that use spring-boot-devtools will automatically restart whenever files on the classpath change-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!--mysql驱动-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <!--thymeleaf模板jar，是很不错的html数据传递取值，类似jsp的jstl-->
+        <!--<dependency>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-thymeleaf</artifactId>-->
+        <!--</dependency>-->
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-jdk8</artifactId>
+            <version>${org.mapstruct.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>${org.mapstruct.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!--spring boot应用的maven打包过程 先通过maven-shade-plugin生成一个包含依赖的jar，
+            再通过spring-boot-maven-plugin插件把spring boot loader相关的类，还有MANIFEST.MF打包到jar里。-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.bsc.maven</groupId>
+                <artifactId>maven-processor-plugin</artifactId>
+                <version>2.2.4</version>
+                <configuration>
+                    <defaultOutputDirectory>
+                        ${project.build.directory}/generated-sources
+                    </defaultOutputDirectory>
+                    <processors>
+                        <processor>org.mapstruct.ap.MappingProcessor</processor>
+                        <options>
+                            <mapstruct.suppressGeneratorTimestamp>true</mapstruct.suppressGeneratorTimestamp>
+                            <mapstruct.defaultComponentModel>spring</mapstruct.defaultComponentModel>
+                        </options>
+                    </processors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>process</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>process</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.mapstruct</groupId>
+                        <artifactId>mapstruct-processor</artifactId>
+                        <version>${org.mapstruct.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+
+        <!-- 配置java版本 不配置的话默认父类配置的是1.6-->
+        <!--<pluginManagement>-->
+        <!--<plugins>-->
+        <!--<plugin>-->
+        <!--<artifactId>maven-compiler-plugin</artifactId>-->
+        <!--<configuration>-->
+        <!--<source>1.8</source>-->
+        <!--<target>1.8</target>-->
+        <!--</configuration>-->
+        <!--</plugin>-->
+        <!--</plugins>-->
+        <!--</pluginManagement>-->
+
+        <finalName>Warehouse</finalName>
+    </build>
 </project>

@@ -1,5 +1,6 @@
 package com.nyb.warehouse.controller;
 
+import com.nyb.warehouse.common.CResult;
 import com.nyb.warehouse.service.UserService;
 import com.nyb.warehouse.viewmodel.WebUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,16 +16,15 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value = "/CreateUser", method = RequestMethod.POST)
-    public boolean CreateUser(@RequestBody WebUser webUser) {
-
-        return true;
+    public CResult<Boolean> CreateUser(@RequestBody WebUser webUser) {
+        boolean result = userService.createUser(webUser);
+        return new CResult<Boolean>(result);
     }
 
     @RequestMapping(value = "/GetUserByID/{UserId}", method = RequestMethod.GET)
-    public WebUser GetUserByID(@PathVariable("UserId") String userID) {
-        WebUser webUser = new WebUser();
-        webUser.setAddress("home");
-        return webUser;
+    public CResult<WebUser> GetUserByID(@PathVariable("UserId") String userID) {
+        WebUser webUser = userService.getWebUserByID(userID);
+        return new CResult<WebUser>(webUser);
     }
 
     @RequestMapping(value = "/GetUsers", method = RequestMethod.GET)

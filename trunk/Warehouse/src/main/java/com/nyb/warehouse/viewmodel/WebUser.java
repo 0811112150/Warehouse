@@ -6,7 +6,7 @@ import java.sql.Timestamp;
  * Created by aa on 2016/12/7.
  */
 public class WebUser {
-    private String id;
+    private String userId;
     private String loginName;
     private String name;
     private String email;
@@ -17,12 +17,12 @@ public class WebUser {
     private Timestamp createDateTime;
     private Timestamp lastLoginTime;
 
-    public String getId() {
-        return id;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getLoginName() {
