@@ -5,6 +5,9 @@ import com.nyb.warehouse.entity.User;
 import com.nyb.warehouse.modelmapper.UserMapper;
 import com.nyb.warehouse.viewmodel.WebUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
@@ -31,6 +34,7 @@ public class UserServiceImpl implements com.nyb.warehouse.service.UserService {
         user.setUserId(UUID.randomUUID().toString());
         user.setCreateDateTime(currentTime);
         user.setLastLoginTime(currentTime);
+        user.setIsValid(true);
 
         User result = userRepository.save(user);
 
@@ -45,9 +49,8 @@ public class UserServiceImpl implements com.nyb.warehouse.service.UserService {
     }
 
     @Override
-    public List<WebUser> getWebUserList() {
-
-        return null;
-
+    public List<WebUser> getWebUserList(String searchInfo) {
+        List<User> users = userRepository.findUserList(searchInfo);
+        return userMapper.entityToViewModels(users);
     }
 }

@@ -6,6 +6,8 @@ import com.nyb.warehouse.viewmodel.WebUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Created by Administrator on 2016/12/7 0007.
  */
@@ -28,9 +30,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/GetUsers", method = RequestMethod.GET)
-    public WebUser GetUsers() {
-        WebUser webUser = new WebUser();
-        webUser.setAddress("home");
-        return webUser;
+    public CResult<List<WebUser>> GetUsers() {
+        return new CResult<List<WebUser>>(userService.getWebUserList(""));
     }
 }
